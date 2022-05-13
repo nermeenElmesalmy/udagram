@@ -9,10 +9,12 @@ orbs:
 jobs:
   build:
     docker:
-      - image: "cimg/node"
+      - image: "cimg/node:18.1.0"
     steps:
       - node/install
       - checkout
+      - run: |
+          node --version
       - run:
           name: Front-End Install
           command: |
