@@ -1,65 +1,133 @@
-# Udagram
+## _Hosting a Full-Stack Application_
 
-This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+deploy  developed full stack application to a cloud service provider(aws) so that it is available to customers. This application contains the main components of a 3-tier full stack application (UI, API, and Database).
+## Project Environment
+Node v16.13.1    # To run the application
+npm v8.9.0		 # For dependency management
+yarn v1.22.18    # For dependency management
+AWS CLI v2		 # to create and deploy elasticbeanstalk
+docker-compose   # To run the Postgres database on Docker
+##project setup
+1. clone the project: - git clone https://github.com/nermeenElmesalmy/udagram.git
+2. go into the directory where the project:- cd udagram
+3. install the dependencies: - yarn add
+4. run the app: yarn start
 
-## Getting Started
+## Installation
+Install the dependencies and devDependencies and start the server.
+```
+npm i
+yarn
+ 
+```
+## update environment in ( udagram-api , udagram-fromtend)
 
-1. Clone this repo locally into the location of your choice.
-1. Move the content of the udagram folder at the root of the repository as this will become the main content of the project.
-1. Open a terminal and navigate to the root of the repo
-1. follow the instructions in the installation step
+update a .env file with all the required environment variables
+### in udagram-api
+POSTGRES_HOST="localhost"
+DB_PORT=5432
+PORT=3000
+POSTGRES_PASSWORD="123"
+POSTGRES_USERNAME="postgres"
+RDS_DIALECT="postgres"
+POSTGRES_DB="udagram"
+AWS_REGION=""
+AWS_PROFILE=""
+AWS_BUCKET=""
+URL="http://localhost"
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+JWT_SECRET="HOSTING FULL-STACK"
 
-The project can run but is missing some information to connect to the database and storage service. These will be setup during the course of the project
+### in udagram-fromtend
+export const environment = {
+  production: false,
+  appName: 'Udagram',
+  apiHost: 'http://localhost:3000/api/v0'
+};
 
-### Dependencies
+## run the project locally
+### _in udagram-api_ ###
+yarn run dev 
+yarn run build
+### _in udagram-frontend_ ###
+yarn run start
+yarn run build
+## the project link in github
+https://github.com/nermeenElmesalmy/udagram
+## hosting the project in aws
+-interact with cloud services(deploy the application used aws console)
+-deploy a database using AWS RDS
+-deploy a web server using AWS Elastic Beanstalk
+-deploy a web UI using AWS S3
+-create buckets
+
+## connect the github ,circleci and  AWS ##
+##setting up a production environment ##
+
+write scripts for web applications
+(write scripts )
+```
+"scripts": {
+        "frontend:install": "cd udagram-frontend && yarn install",
+        "backend:install": "cd udagram-api && yarn install",
+        "frontend:build": "cd udagram-frontend && yarn build",
+        "backend:build": "cd udagram-api && yarn build",
+        "frontend:deploy": "cd udagram-frontend && yarn deploy"
+        }
+```
+configure and document a CI/CD 
+-create a CI/CD pipeline in  CircleCI
+-create . circleci folder with config.yml file
+```
+orbs:
+  node: circleci/node@5.0.2
+  aws-cli: circleci/aws-cli@1.3.1
+jobs:
+  build:
+    docker:
+      - image: "cimg/node:18.1.0"
+    steps:
+      - node/install
+      - checkout
+      - aws-cli/setup
+      - run: |
+          node --version
+      - run:
+          name: Front-End Install
+          command: |
+            yarn frontend:install
+      - run:
+          name: Back-End Install
+          command: |
+            yarn backend:install
+      - run:
+          name: Front-End Build
+          command: |
+            yarn frontend:build
+      - run:
+          name: Back-End Build
+          command: |
+            yarn backend:build
+      - run:
+          name: Deploy App
+          command: |
+            yarn frontend:deploy
+
 
 ```
-- Node v14.15.1 (LTS) or more recent. While older versions can work it is advisable to keep node to latest LTS version
+## the frontend link in aws:
+http://full-stack-ner.s3-website-us-east-1.amazonaws.com
+##  Copyright and licensing information
+Nermeen Elsayed Ahmed Mohamed .
+FreeSoftware,
+## resources 
+udacity.com
+https://aws.amazon.com/rds/resources/
+https://www.postgresql.org/docs/current/
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html
+https://video.udacity-data.com/topher/2021/March/604f64fd_build/build.zip
 
-- npm 6.14.8 (LTS) or more recent, Yarn can work but was not tested for this project
+ 
 
-- AWS CLI v2, v1 can work but was not tested for this project
 
-- A RDS database running Postgres.
-
-- A S3 bucket for hosting uploaded pictures.
-
-```
-
-### Installation
-
-Provision the necessary AWS services needed for running the application:
-
-1. In AWS, provision a publicly available RDS database running Postgres. <Place holder for link to classroom article>
-1. In AWS, provision a s3 bucket for hosting the uploaded files. <Place holder for tlink to classroom article>
-1. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv)/.
-1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
-1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
-
-## Testing
-
-This project contains two different test suite: unit tests and End-To-End tests(e2e). Follow these steps to run the tests.
-
-1. `cd starter/udagram-frontend`
-1. `npm run test`
-1. `npm run e2e`
-
-There are no Unit test on the back-end
-
-### Unit Tests:
-
-Unit tests are using the Jasmine Framework.
-
-### End to End Tests:
-
-The e2e tests are using Protractor and Jasmine.
-
-## Built With
-
-- [Angular](https://angular.io/) - Single Page Application Framework
-- [Node](https://nodejs.org) - Javascript Runtime
-- [Express](https://expressjs.com/) - Javascript API Framework
-
-## License
-
-[License](LICENSE.txt)
