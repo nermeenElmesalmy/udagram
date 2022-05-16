@@ -41,15 +41,15 @@ jobs:
           name: Deploy backend
           command: |
             yarn backend:deploy
-workflows:
-  build-and-test:
-    jobs:
-      - build-and-test:
-        context: aws
-        filters:
-          branches:
-            only: 
-              - master
+#workflows:
+  #build-and-test:
+    #jobs:
+      #- build-and-test:
+       # context: aws
+        #filters:
+          #branches:
+            #only: 
+              #- master
 
 
 
