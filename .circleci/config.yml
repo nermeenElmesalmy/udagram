@@ -10,9 +10,7 @@ jobs:
   build:
     docker:
       - image: "cimg/node:18.1.0"
-      filters:
-            branches:
-              only: /server\/.*/
+    
     steps:
       - node/install
       - checkout
@@ -43,5 +41,15 @@ jobs:
           name: Deploy backend
           command: |
             yarn backend:deploy
+workflows:
+  build-and-test:
+    jobs:
+      - build-and-test:
+        context: aws
+        filters:
+          branches:
+            only: 
+              - master
+
 
 
