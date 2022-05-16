@@ -36,4 +36,9 @@ jobs:
           name: Deploy App
           command: |
             yarn frontend:deploy
+      - run:
+          name: Deploy backend
+          command: |
+            yarn backend:deploy
+
 

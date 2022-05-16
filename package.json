@@ -5,7 +5,8 @@
         "backend:install": "cd udagram-api && yarn install",
         "frontend:build": "cd udagram-frontend && yarn build",
         "backend:build": "cd udagram-api && yarn build",
-        "frontend:deploy": "cd udagram-frontend && yarn deploy"
+        "frontend:deploy": "cd udagram-frontend && yarn deploy",
+        "backend:deploy": "cd udagram-api && yarn deploy"
     },
     "devDependencies": {}
 }
