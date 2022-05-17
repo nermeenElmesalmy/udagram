@@ -39,6 +39,13 @@ jobs:
           name: Deploy App
           command: |
             yarn frontend:deploy
+       - run:
+          name: Installing deployment dependencies
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install --upgrade setuptools
+            sudo pip install awsebcli --upgrade
       - run:
           name: Deploy backend
           command: |
