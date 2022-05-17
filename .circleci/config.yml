@@ -39,7 +39,7 @@ jobs:
           name: Deploy App
           command: |
             yarn frontend:deploy
-       - run:
+      - run:
           name: Installing deployment dependencies
           command: |
             sudo apt-get -y -qq update
