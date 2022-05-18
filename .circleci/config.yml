@@ -48,8 +48,6 @@ jobs:
       - run:
           name: Deploy backend
           command: |
-            aws s3 cp ./www/Archive.zip $AWS_BUCKET
-            aws s3api create-bucket --bucket full-stack-ner --region us-east-1
             yarn backend:deploy
            
      
