@@ -51,11 +51,7 @@ jobs:
             aws s3 cp ./www/Archive.zip $full-stack-ner
             aws elasticbeanstalk create-application-version --application-name $EB_APP --version-label  --source-bundle S3Bucket="$EB_BUCKET",S3Key="Archive.zip"
             aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name $EB_ENV --version-label 
-workflows:
-  build_and_deploy:
-    jobs:
-      - frontend
-      - server
+
 
 #deployment:
      # production:
