@@ -50,7 +50,7 @@ jobs:
        branch: master
         commands:
            - eb deploy --profile default
-           yarn backend:deploy
+             yarn backend:deploy
            
      
 #workflows:
