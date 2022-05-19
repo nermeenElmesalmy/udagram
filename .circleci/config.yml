@@ -48,7 +48,6 @@ jobs:
       - run:
           name: Deploy Server
           command: |-
-            aws s3 cp ./udagram-api/www/Archive.zip $full-stack-ner
             eb deploy udagrem-api-dev
 
 #deployment:
