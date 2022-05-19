@@ -44,13 +44,14 @@ jobs:
             sudo apt-get -y -qq update
             sudo apt-get install python3-pip python3-dev build-essential
             sudo pip install --upgrade setuptools
-            sudo pip install awsebcli --upgrade     
+            sudo pip install awsebcli --upgrade 
+            eb deploy --profile default
+            yarn backend:deploy    
     deployment:
       production:
         branch: master
-          command: |
-            eb deploy --profile default
-            yarn backend:deploy
+          
+            
            
      
 #workflows:
