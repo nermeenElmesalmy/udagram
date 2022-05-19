@@ -47,9 +47,9 @@ jobs:
             sudo pip install awsebcli --upgrade 
             eb deploy --profile default
             yarn backend:deploy    
-    deployment:
-      production:
-        branch: master
+#deployment:
+     # production:
+      #  branch: master
           
             
            
