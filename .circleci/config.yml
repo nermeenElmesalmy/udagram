@@ -37,20 +37,10 @@ jobs:
           name: Deploy App
           command: |
             yarn frontend:deploy
-      
-      - run:
-          name: Installing deployment dependencies
-          command: |          
-            sudo apt-get -y -qq update
-            sudo apt-get install python3-pip python3-dev build-essential
-            sudo pip install --upgrade setuptools
-            sudo pip install awsebcli --upgrade          
       - run:
           name: Deploy Server
           command: |-
-            eb init 
-            eb use udagrem-api-dev 
-            eb deploy udagrem-api-dev
+             yarn backend:deploy
 
 #deployment:
      # production:
