@@ -11,7 +11,7 @@
     "clean": "rm -r -f www/ || true",
     "build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy":"eb setenv AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
+    "deploy":"eb setenv AWS_ACCESS_KEY_ID=AKIAQBKUBCQJYHXIIQPG AWS_SECRET_ACCESS_KEY=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 AWS_DEFAULT_REGION=us-east-1"
   },
   "keywords": [],
   "author": "Gabriel Ruttner",
