@@ -48,7 +48,8 @@ jobs:
       - run:
           name: Deploy Server
           command: |-
-            eb init
+            eb init 
+            eb use udagrem-api-dev -r us-east-1
             eb deploy udagrem-api-dev
 
 #deployment:
