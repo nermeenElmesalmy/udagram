@@ -3,7 +3,7 @@ branch-defaults:
     environment: udagram-api-dev
     group_suffix: null
 deploy:
-  artifact: www/archive.zip
+  artifact: udagram-api/www/archive.zip
 environment-defaults:
   udagram-api-dev:
     branch: null
