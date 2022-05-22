@@ -41,24 +41,9 @@ jobs:
       - run:
           name: Deploy Server
           command: |-
-             yarn backend:deploy
-
-#deployment:
-     # production:
-      #  branch: master
-          
-            
-           
-     
-#workflows:
-  #build-and-test:
-    #jobs:
-      #- build-and-test:
-       # context: aws
-        #filters:
-          #branches:
-            #only: 
-              #- master
-
-
-
+             yarn backend:deploy            
+workflows:
+  build-and-test:
+    jobs:
+      - build
+      
