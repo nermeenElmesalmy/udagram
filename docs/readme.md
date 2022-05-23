@@ -41,9 +41,9 @@ JWT_SECRET="HOSTING FULL-STACK"
 
 ### in udagram-fromtend
 export const environment = {
-  production: false,
-  appName: 'Udagram',
-  apiHost: 'http://localhost:3000/api/v0'
+  production: true,
+  appName: "Udagram",
+  apiHost: "http://udagram-api-dev.eba-ys7fm4p9.us-east-1.elasticbeanstalk.com/api/v0",
 };
 
 ## run the project locally
@@ -69,11 +69,15 @@ write scripts for web applications
 (write scripts )
 ```
 "scripts": {
-        "frontend:install": "cd udagram-frontend && yarn install",
+         "frontend:install": "cd udagram-frontend && yarn install",
         "backend:install": "cd udagram-api && yarn install",
         "frontend:build": "cd udagram-frontend && yarn build",
         "backend:build": "cd udagram-api && yarn build",
-        "frontend:deploy": "cd udagram-frontend && yarn deploy"
+        "frontend:test": "cd udagram-frontend && yarn test && yarn e2e",
+        "backend:test": "cd udagram-api && yarn test",
+        "frontend:deploy": "cd udagram-frontend && yarn deploy",
+        "backend:deploy": "cd udagram-api && yarn deploy"
+
         }
 ```
 configure and document a CI/CD 
@@ -83,14 +87,17 @@ configure and document a CI/CD
 orbs:
   node: circleci/node@5.0.2
   aws-cli: circleci/aws-cli@1.3.1
+  eb: circleci/aws-elastic-beanstalk@1.0.2
 jobs:
   build:
     docker:
       - image: "cimg/node:18.1.0"
+    
     steps:
       - node/install
       - checkout
       - aws-cli/setup
+      - eb/setup
       - run: |
           node --version
       - run:
@@ -113,9 +120,30 @@ jobs:
           name: Deploy App
           command: |
             yarn frontend:deploy
-
-
+      - run:
+          name: Deploy Server
+          command: |-
+             yarn backend:deploy            
+workflows:
+  build-and-test:
+    jobs:
+      - build
+      
 ```
+## Testing
+This project contains two different test suite: unit tests and End-To-End tests(e2e). Follow these steps to run the tests.
+
+cd starter/udagram-frontend
+yarn test
+yarn e2e
+There are no Unit test on the back-end
+
+Unit Tests:
+Unit tests are using the Jasmine Framework.
+
+End-to-End Tests:
+The e2e tests are using Protractor and Jasmine.
+
 ## the frontend link in aws:
 http://full-stack-ner.s3-website-us-east-1.amazonaws.com
 ##  Copyright and licensing information

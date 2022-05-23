@@ -1,4 +1,4 @@
 ## the frontend link in aws:
 http://full-stack-ner.s3-website-us-east-1.amazonaws.com
 ## the project link in github
-https://github.com/nermeenElmesalmy/udagrams
+https://github.com/nermeenElmesalmy/udagram
